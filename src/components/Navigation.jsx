@@ -33,7 +33,7 @@ export default function Navigation() {
             className={location === 'sign-in' ? 'nav-active-link' : ''}
             onClick={() => navigate('/sign-in')}
           >
-            Signin
+            Sign in
           </li>
         </ul>
       </div>

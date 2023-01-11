@@ -10,7 +10,7 @@ import Navigation from './components/Navigation';
 
 export default function App() {
   return (
-    <div className="">
+    <div className="App">
       <BrowserRouter>
         <Navigation />
         <Routes>

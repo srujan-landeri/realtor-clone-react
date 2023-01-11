@@ -1,8 +1,13 @@
 * {
   font-family: sans-serif;
+  padding: 0%;
+  margin: 0%;
 }
 .flex {
   display: flex;
+}
+.App {
+  padding: 2% 5%;
 }
 
 /* navigation design */
@@ -36,8 +41,7 @@
   width: 90%;
   margin: auto;
   text-align: center;
-  border: 2px solid black;
-  border-radius: 12px;
+  padding-block: 3%;
 }
 .signin {
   justify-content: space-around;
@@ -48,11 +52,48 @@
 }
 .form {
   flex-direction: column;
-  border: 2px red solid;
   width: 500px;
+  align-items: center;
 }
 .form input {
-  font-size: 20px;
-  margin: 3%;
+  font-size: 18px;
+  margin: 2%;
   padding: 2%;
+  font-weight: 100;
+  width: 400px;
+  border-radius: 4px;
+  border: 1px solid black;
+}
+.form-text {
+  margin-block: 2%;
+  width: 420px;
+}
+.form-text p {
+  display: inline-block;
+  margin-right: auto;
+}
+.form-text p span {
+  color: red;
+  cursor: pointer;
+}
+.form-text > span {
+  color: blue;
+  cursor: pointer;
+  display: inline-block;
+}
+.signin-btn {
+  width: 420px;
+  margin: 2%;
+  height: 40px;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  font-family: sans-serif;
+  border: none;
+}
+.red {
+  background-color: red;
+}
+.blue {
+  background-color: #1d65f1;
 }
