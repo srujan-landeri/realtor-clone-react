@@ -1,13 +1,30 @@
-.display-flex{
+* {
+  font-family: sans-serif;
+}
+.flex {
   display: flex;
 }
 .navigation-bar {
   justify-content: space-between;
   align-items: baseline;
+  padding: 1% 10%;
+  position: sticky;
+  top: 0%;
 }
 .nav-logo {
   height: 25px;
   cursor: pointer;
 }
-.nav-page-links {
+.nav-page-links li {
+  margin-inline: 10px;
+  list-style-type: none;
+  color: #757575;
+  font-weight: 300;
+  cursor: pointer;
+}
+.nav-active-link {
+  color: black !important;
+  font-weight: 600 !important;
+  border-bottom: 2px red solid;
+  padding-bottom: 10px;
 }
