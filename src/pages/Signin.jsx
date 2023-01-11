@@ -1,10 +1,16 @@
 import React from 'react';
+import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai/';
+import { useNavigate } from 'react-router-dom';
 
 export default function Signin() {
   const [formData, setFormData] = React.useState({
     email: '',
     password: '',
   });
+
+  const [view, setView] = React.useState(true);
+
+  const navigate = useNavigate();
 
   function handleInputOnChange(event) {
     console.log(formData);
@@ -42,20 +48,35 @@ export default function Signin() {
             <input
               className="form-input"
               name="password"
-              type="password"
+              type={view ? 'password' : 'text'}
               placeholder="Password"
               value={formData.password}
               onChange={handleInputOnChange}
             />
-            <p className="view-icon">i</p>
+
+            {view ? (
+              <AiFillEyeInvisible
+                size={22}
+                className="view-icon"
+                onClick={() => setView((prev) => !prev)}
+              />
+            ) : (
+              <AiFillEye
+                size={22}
+                className="view-icon"
+                onClick={() => setView((prev) => !prev)}
+              />
+            )}
           </div>
-          
 
           <div className="form-text flex">
             <p>
-              Don't have an account? <span>Register</span>{' '}
+              Don't have an account?{' '}
+              <span onClick={() => navigate('/sign-up')}>Register</span>{' '}
             </p>
-            <span>Forgot password?</span>
+            <span onClick={() => navigate('/forgot-password')}>
+              Forgot password?
+            </span>
           </div>
           <button className="signin-btn blue">SIGN IN</button>
           <p>OR</p>

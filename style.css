@@ -94,6 +94,7 @@
   font-family: sans-serif;
   border: none;
   border-radius: 4px;
+  cursor: pointer;
 }
 .red {
   background-color: red;
@@ -104,7 +105,8 @@
 .view-icon {
   position: absolute;
   right: 3px;
-  bottom: 18px;
+  bottom: 15px;
+  cursor: pointer;
 }
 .pass-container {
   position: relative;
