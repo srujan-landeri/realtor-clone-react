@@ -1,0 +1,13 @@
+.display-flex{
+  display: flex;
+}
+.navigation-bar {
+  justify-content: space-between;
+  align-items: baseline;
+}
+.nav-logo {
+  height: 25px;
+  cursor: pointer;
+}
+.nav-page-links {
+}

@@ -6,11 +6,13 @@ import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import Offers from './pages/Offers';
 import ForgotPassword from './pages/ForgotPassword';
+import Navigation from './components/Navigation';
 
 export default function App() {
   return (
     <div className="">
       <BrowserRouter>
+        <Navigation />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
