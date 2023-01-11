@@ -11,7 +11,7 @@ export default function Navigation() {
         <img
           className="nav-logo"
           src="https://static.rdc.moveaws.com/images/logos/rdc-logo-default.svg"
-          alt=""
+          alt="logo"
           onClick={() => navigate('/')}
         />
       </div>

@@ -4,6 +4,8 @@
 .flex {
   display: flex;
 }
+
+/* navigation design */
 .navigation-bar {
   justify-content: space-between;
   align-items: baseline;
@@ -27,4 +29,30 @@
   font-weight: 600 !important;
   border-bottom: 2px red solid;
   padding-bottom: 10px;
+}
+
+/* sign-in design */
+.signin-container {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 12px;
+}
+.signin {
+  justify-content: space-around;
+  padding: 3% 0% 7% 0%;
+}
+.signin-img {
+  height: 300px;
+}
+.form {
+  flex-direction: column;
+  border: 2px red solid;
+  width: 500px;
+}
+.form input {
+  font-size: 20px;
+  margin: 3%;
+  padding: 2%;
 }
