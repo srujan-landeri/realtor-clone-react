@@ -10,17 +10,19 @@ import Navigation from './components/Navigation';
 
 export default function App() {
   return (
-    <div className="App">
+    <div>
       <BrowserRouter>
         <Navigation />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/sign-in" element={<Signin />} />
-          <Route path="/sign-up" element={<Signup />} />
-          <Route path="/offers" element={<Offers />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-        </Routes>
+        <div  className="App">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/sign-in" element={<Signin />} />
+            <Route path="/sign-up" element={<Signup />} />
+            <Route path="/offers" element={<Offers />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </div>
   );

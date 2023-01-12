@@ -2,6 +2,13 @@ import React from 'react';
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai/';
 import { useNavigate } from 'react-router-dom';
 import OAuth from '../components/OAuth';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from 'firebase/auth';
+import { db } from '../firebase';
+import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 
 export default function Signup() {
   const [formData, setFormData] = React.useState({
@@ -17,13 +24,43 @@ export default function Signup() {
   const navigate = useNavigate();
 
   function handleInputOnChange(event) {
-    console.log(formData);
     setFormData((prevData) => {
       return {
         ...prevData,
         [event.target.name]: event.target.value,
       };
     });
+  }
+
+  async function onSubmit(event) {
+    event.preventDefault();
+
+    try {
+      const auth = getAuth();
+      const userCreadential = await createUserWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.password
+      );
+      updateProfile(auth.currentUser, {
+        displayName: formData.fullname,
+      });
+      const user = userCreadential.user;
+      console.log(user);
+      // creating copy of form data for storing onto dataset
+      // passwords are excluded for security resons
+      const formDataCopy = { ...formData };
+      delete formDataCopy.password;
+      delete formDataCopy.confirmPassword;
+      formDataCopy.timestamp = serverTimestamp();
+
+      // adding data onto db
+      await setDoc(doc(db, 'users', user.uid), formDataCopy);
+      // going to home page if everything goes well
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -39,7 +76,7 @@ export default function Signup() {
           />
         </div>
 
-        <form className="form flex">
+        <form className="form flex" onSubmit={onSubmit}>
           <input
             name="fullname"
             type="text"

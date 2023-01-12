@@ -7,7 +7,7 @@
   display: flex;
 }
 .App {
-  padding: 2% 5%;
+  padding: 1% 5%;
 }
 .pointer {
   cursor: pointer;
@@ -17,9 +17,10 @@
 .navigation-bar {
   justify-content: space-between;
   align-items: baseline;
-  padding: 1% 10%;
+  padding: 2% 10%;
   position: sticky;
   top: 0%;
+  background-color: white;
 }
 .nav-logo {
   height: 25px;
@@ -42,7 +43,7 @@
   width: 90%;
   margin: auto;
   text-align: center;
-  padding-block: 3%;
+  padding-block: 1%;
 }
 .signin {
   justify-content: space-around;
