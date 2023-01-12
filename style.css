@@ -9,6 +9,9 @@
 .App {
   padding: 2% 5%;
 }
+.pointer {
+  cursor: pointer;
+}
 
 /* navigation design */
 .navigation-bar {
@@ -20,14 +23,12 @@
 }
 .nav-logo {
   height: 25px;
-  cursor: pointer;
 }
 .nav-page-links li {
   margin-inline: 10px;
   list-style-type: none;
   color: #757575;
   font-weight: 300;
-  cursor: pointer;
 }
 .nav-active-link {
   color: black !important;
@@ -77,11 +78,9 @@
 }
 .form-text p span {
   color: red;
-  cursor: pointer;
 }
 .form-text > span {
   color: blue;
-  cursor: pointer;
   display: inline-block;
 }
 .signin-btn {
@@ -91,10 +90,8 @@
   color: white;
   font-weight: 600;
   font-size: 13px;
-  font-family: sans-serif;
   border: none;
   border-radius: 4px;
-  cursor: pointer;
 }
 .red {
   background-color: red;
@@ -107,7 +104,6 @@
   position: absolute;
   right: 3px;
   bottom: 15px;
-  cursor: pointer;
 }
 .pass-container {
   position: relative;
@@ -136,3 +132,4 @@
   left: 45px;
   top: 6px;
 }
+

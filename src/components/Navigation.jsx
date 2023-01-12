@@ -9,28 +9,32 @@ export default function Navigation() {
     <nav className="navigation-bar flex">
       <div>
         <img
-          className="nav-logo"
+          className="nav-logo pointer"
           src="https://static.rdc.moveaws.com/images/logos/rdc-logo-default.svg"
           alt="logo"
           onClick={() => navigate('/')}
         />
       </div>
       <div>
-        <ul className="nav-page-links flex">
+        <ul className="nav-page-links flex ">
           <li
-            className={location === '' ? 'nav-active-link' : ''}
+            className={location === '' ? 'nav-active-link pointer' : ' pointer'}
             onClick={() => navigate('/')}
           >
             Home
           </li>
           <li
-            className={location === 'offers' ? 'nav-active-link' : ''}
+            className={
+              location === 'offers' ? 'nav-active-link pointer' : ' pointer'
+            }
             onClick={() => navigate('/offers')}
           >
             Offers
           </li>
           <li
-            className={location === 'sign-in' ? 'nav-active-link' : ''}
+            className={
+              location === 'sign-in' ? 'nav-active-link pointer' : ' pointer'
+            }
             onClick={() => navigate('/sign-in')}
           >
             Sign in

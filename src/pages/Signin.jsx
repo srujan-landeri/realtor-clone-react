@@ -58,13 +58,13 @@ export default function Signin() {
             {view ? (
               <AiFillEyeInvisible
                 size={22}
-                className="view-icon"
+                className="view-icon pointer"
                 onClick={() => setView((prev) => !prev)}
               />
             ) : (
               <AiFillEye
                 size={22}
-                className="view-icon"
+                className="view-icon pointer"
                 onClick={() => setView((prev) => !prev)}
               />
             )}
@@ -73,13 +73,18 @@ export default function Signin() {
           <div className="form-text flex">
             <p>
               Don't have an account?{' '}
-              <span onClick={() => navigate('/sign-up')}>Register</span>{' '}
+              <span className="pointer" onClick={() => navigate('/sign-up')}>
+                Register
+              </span>{' '}
             </p>
-            <span onClick={() => navigate('/forgot-password')}>
+            <span
+              className="pointer"
+              onClick={() => navigate('/forgot-password')}
+            >
               Forgot password?
             </span>
           </div>
-          <button className="signin-btn blue">SIGN IN</button>
+          <button className="signin-btn blue pointer">SIGN IN</button>
           <div className="flex or-container">
             <hr className="h-line hr1" />
             <span>OR</span>
