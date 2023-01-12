@@ -33,7 +33,11 @@ export default function Navigation() {
           </li>
           <li
             className={
-              location === 'sign-in' ? 'nav-active-link pointer' : ' pointer'
+              location === 'sign-in' ||
+              location === 'sign-up' ||
+              location === 'forgot-password'
+                ? 'nav-active-link pointer'
+                : ' pointer'
             }
             onClick={() => navigate('/sign-in')}
           >
