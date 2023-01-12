@@ -96,6 +96,7 @@
 .red {
   background-color: red;
   margin-top: 25px;
+  position: relative;
 }
 .blue {
   background-color: #1d65f1;
@@ -132,4 +133,10 @@
   left: 45px;
   top: 6px;
 }
-
+.g-icon {
+  position: absolute;
+  left: 96px;
+  top: 9px;
+  background-color: white;
+  border-radius: 50%;
+}

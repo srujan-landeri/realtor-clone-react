@@ -36,7 +36,7 @@ export default function Signin() {
           />
         </div>
 
-        <div className="form flex">
+        <form className="form flex">
           <input
             name="email"
             type="email"
@@ -91,7 +91,7 @@ export default function Signin() {
             <hr className="h-line hr2" />
           </div>
           <OAuth />
-        </div>
+        </form>
       </div>
     </div>
   );

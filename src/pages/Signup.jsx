@@ -1,5 +1,134 @@
 import React from 'react';
+import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai/';
+import { useNavigate } from 'react-router-dom';
+import OAuth from '../components/OAuth';
 
 export default function Signup() {
-  return <div>Signup</div>;
+  const [formData, setFormData] = React.useState({
+    fullname: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+
+  const [viewP, setViewP] = React.useState(true);
+  const [viewCP, setViewCP] = React.useState(true);
+
+  const navigate = useNavigate();
+
+  function handleInputOnChange(event) {
+    console.log(formData);
+    setFormData((prevData) => {
+      return {
+        ...prevData,
+        [event.target.name]: event.target.value,
+      };
+    });
+  }
+
+  return (
+    <div className="signin-container">
+      <h2 className="">SIGN UP</h2>
+
+      <div className="signin flex">
+        <div className="signin-image">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAMJmhXDaeBUE79XjTPCcxkON7Jf8FLpQA_w&usqp=CAU"
+            alt=""
+            className="signin-img"
+          />
+        </div>
+
+        <form className="form flex">
+          <input
+            name="fullname"
+            type="text"
+            placeholder="Full Name"
+            value={formData.fullname}
+            onChange={handleInputOnChange}
+            className="form-input"
+          />
+          <input
+            name="email"
+            type="email"
+            placeholder="Email address"
+            value={formData.email}
+            onChange={handleInputOnChange}
+            className="form-input"
+          />
+          <div className="pass-container">
+            <input
+              className="form-input"
+              name="password"
+              type={viewP ? 'password' : 'text'}
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleInputOnChange}
+            />
+
+            {viewP ? (
+              <AiFillEyeInvisible
+                size={22}
+                className="view-icon pointer"
+                onClick={() => setViewP((prev) => !prev)}
+              />
+            ) : (
+              <AiFillEye
+                size={22}
+                className="view-icon pointer"
+                onClick={() => setViewP((prev) => !prev)}
+              />
+            )}
+          </div>
+
+          <div className="pass-container">
+            <input
+              className="form-input"
+              name="confirmPassword"
+              type={viewCP ? 'password' : 'text'}
+              placeholder="Confirm Password"
+              value={formData.confirmPassword}
+              onChange={handleInputOnChange}
+            />
+
+            {viewCP ? (
+              <AiFillEyeInvisible
+                size={22}
+                className="view-icon pointer"
+                onClick={() => setViewCP((prev) => !prev)}
+              />
+            ) : (
+              <AiFillEye
+                size={22}
+                className="view-icon pointer"
+                onClick={() => setViewCP((prev) => !prev)}
+              />
+            )}
+          </div>
+
+          <div className="form-text flex">
+            <p>
+              Already have an account?{' '}
+              <span className="pointer" onClick={() => navigate('/sign-in')}>
+                Sign in
+              </span>{' '}
+            </p>
+            <span
+              className="pointer"
+              onClick={() => navigate('/forgot-password')}
+            >
+              Forgot password?
+            </span>
+          </div>
+          <button className="signin-btn blue pointer">SIGN UP</button>
+          <div className="flex or-container">
+            <hr className="h-line hr1" />
+            <span>OR</span>
+            <hr className="h-line hr2" />
+          </div>
+          <OAuth />
+        </form>
+      </div>
+    </div>
+  );
 }
