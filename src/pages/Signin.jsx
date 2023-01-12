@@ -1,6 +1,7 @@
 import React from 'react';
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai/';
 import { useNavigate } from 'react-router-dom';
+import OAuth from '../components/OAuth';
 
 export default function Signin() {
   const [formData, setFormData] = React.useState({
@@ -79,8 +80,12 @@ export default function Signin() {
             </span>
           </div>
           <button className="signin-btn blue">SIGN IN</button>
-          <p>OR</p>
-          <button className="signin-btn red">CONTINUE WITH GOOGLE</button>
+          <div className="flex or-container">
+            <hr className="h-line hr1" />
+            <span>OR</span>
+            <hr className="h-line hr2" />
+          </div>
+          <OAuth />
         </div>
       </div>
     </div>
