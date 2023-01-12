@@ -7,13 +7,15 @@ import Signup from './pages/Signup';
 import Offers from './pages/Offers';
 import ForgotPassword from './pages/ForgotPassword';
 import Navigation from './components/Navigation';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
   return (
     <div>
       <BrowserRouter>
         <Navigation />
-        <div  className="App">
+        <div className="App">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
@@ -24,6 +26,18 @@ export default function App() {
           </Routes>
         </div>
       </BrowserRouter>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 }

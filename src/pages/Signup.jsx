@@ -9,6 +9,7 @@ import {
 } from 'firebase/auth';
 import { db } from '../firebase';
 import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { toast } from 'react-toastify';
 
 export default function Signup() {
   const [formData, setFormData] = React.useState({
@@ -34,33 +35,67 @@ export default function Signup() {
 
   async function onSubmit(event) {
     event.preventDefault();
+    if (isValid() == 1) {
+      try {
+        const auth = getAuth();
+        const userCreadential = await createUserWithEmailAndPassword(
+          auth,
+          formData.email,
+          formData.password
+        );
+        updateProfile(auth.currentUser, {
+          displayName: formData.fullname,
+        });
+        const user = userCreadential.user;
+        console.log(user);
+        // creating copy of form data for storing onto dataset
+        // passwords are excluded for security resons
+        const formDataCopy = { ...formData };
+        delete formDataCopy.password;
+        delete formDataCopy.confirmPassword;
+        formDataCopy.timestamp = serverTimestamp();
 
-    try {
-      const auth = getAuth();
-      const userCreadential = await createUserWithEmailAndPassword(
-        auth,
-        formData.email,
-        formData.password
-      );
-      updateProfile(auth.currentUser, {
-        displayName: formData.fullname,
-      });
-      const user = userCreadential.user;
-      console.log(user);
-      // creating copy of form data for storing onto dataset
-      // passwords are excluded for security resons
-      const formDataCopy = { ...formData };
-      delete formDataCopy.password;
-      delete formDataCopy.confirmPassword;
-      formDataCopy.timestamp = serverTimestamp();
-
-      // adding data onto db
-      await setDoc(doc(db, 'users', user.uid), formDataCopy);
-      // going to home page if everything goes well
-      navigate('/');
-    } catch (error) {
-      console.log(error);
+        // adding data onto db
+        await setDoc(doc(db, 'users', user.uid), formDataCopy);
+        // going to home page if everything goes well
+        toast.success('Signup was sucessful');
+        navigate('/');
+      } catch (error) {
+        if (error.message.split('/')[1] == 'email-already-in-use).') {
+          toast.error('Email is already in use');
+        } else {
+          toast.error('Something went wrong with the registration!');
+        }
+      }
     }
+  }
+
+  function isValid(event) {
+    // checking name
+    if (formData.fullname == '') {
+      toast.error('Please enter your name');
+      return -1;
+    }
+
+    //checking mail
+    if (
+      !formData.email.match(
+        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+      )
+    ) {
+      toast.error('please enter a valid email');
+      return -1;
+    }
+    // checking password
+    if (formData.password.length < 8) {
+      toast.error('choose a password with atleast length 8');
+      return -1;
+    }
+    if (formData.confirmPassword != formData.password) {
+      toast.error("passwords doesn't match");
+      return -1;
+    }
+    return 1;
   }
 
   return (
