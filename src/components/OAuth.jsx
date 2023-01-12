@@ -4,8 +4,13 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import { db } from '../firebase';
 import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export default function OAuth() {
+  const navigate = useNavigate();
+  const location = useLocation().pathname.slice(1);
+
   async function handleGoogleSignin() {
     try {
       const auth = getAuth();
@@ -15,7 +20,7 @@ export default function OAuth() {
       console.log(user);
       // check for user
 
-      const docRef = doc(db, 'users,user.uid');
+      const docRef = doc(db, 'users', user.uid);
       const docSnap = await getDoc(docRef);
 
       if (!docSnap.exists()) {
@@ -25,6 +30,15 @@ export default function OAuth() {
           timestamp: serverTimestamp(),
         });
       }
+
+      if (location === 'sign-in') {
+        toast.success('Signin was successful');
+      } else if (location === 'sign-up') {
+        toast.success('Signup was successful');
+      } else {
+        toast.success('password was successfully reset');
+      }
+      navigate('/');
     } catch (error) {
       console.log(error);
       toast("couldn't sign in with google");

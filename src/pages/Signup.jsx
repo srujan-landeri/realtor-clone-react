@@ -58,7 +58,7 @@ export default function Signup() {
         // adding data onto db
         await setDoc(doc(db, 'users', user.uid), formDataCopy);
         // going to home page if everything goes well
-        toast.success('Signup was sucessful');
+        toast.success('Signup was successful');
         navigate('/');
       } catch (error) {
         if (error.message.split('/')[1] == 'email-already-in-use).') {

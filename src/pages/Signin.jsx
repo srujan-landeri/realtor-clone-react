@@ -2,6 +2,8 @@ import React from 'react';
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai/';
 import { useNavigate } from 'react-router-dom';
 import OAuth from '../components/OAuth';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { toast } from 'react-toastify';
 
 export default function Signin() {
   const [formData, setFormData] = React.useState({
@@ -23,6 +25,27 @@ export default function Signin() {
     });
   }
 
+  async function onSubmit(event) {
+    event.preventDefault();
+    try {
+      const auth = getAuth();
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.password
+      );
+
+      if (userCredential.user) {
+        navigate('/');
+        toast.success('signin was successful');
+      } else {
+        toast.error('bad user credential');
+      }
+    } catch (error) {
+      toast.error('problem while signin');
+    }
+  }
+
   return (
     <div className="signin-container">
       <h2 className="">SIGN IN</h2>
@@ -36,7 +59,7 @@ export default function Signin() {
           />
         </div>
 
-        <form className="form flex">
+        <form className="form flex" onSubmit={onSubmit}>
           <input
             name="email"
             type="email"
