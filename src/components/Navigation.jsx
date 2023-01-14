@@ -35,7 +35,8 @@ export default function Navigation() {
             className={
               location === 'sign-in' ||
               location === 'sign-up' ||
-              location === 'forgot-password'
+              location === 'forgot-password' ||
+              location === "profile"
                 ? 'nav-active-link pointer'
                 : ' pointer'
             }

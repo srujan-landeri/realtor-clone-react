@@ -12,6 +12,9 @@
 .pointer {
   cursor: pointer;
 }
+.m-auto {
+  margin: auto;
+}
 
 /* navigation design */
 .navigation-bar {
@@ -140,4 +143,18 @@
   top: 9px;
   background-color: white;
   border-radius: 50%;
+}
+
+/*profile styles*/
+
+.prof-heading {
+  text-align: center;
+}
+
+.prof-input {
+  font-size: 18px;
+  width: 300px;
+  padding: 10px;
+  margin-block: 10px;
+  border: 1px gray solid;
 }
