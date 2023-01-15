@@ -157,3 +157,19 @@
   margin-block: 10px;
   border: 1px gray solid;
 }
+
+.prof-text {
+  display: flex;
+  justify-content: space-between;
+  width: 420px;
+  margin-block: 10px;
+}
+
+.prof-text span {
+  color: #e7663b;
+  cursor: pointer;
+}
+
+.prof-text > span {
+  color: #1d65f1;
+}

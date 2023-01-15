@@ -24,6 +24,13 @@ export default function Profile() {
           name="email"
           value={formData.email}
         />
+
+        <div className="prof-text">
+          <p>
+            Do you want to edit your details? <span>Edit</span>{' '}
+          </p>
+          <span>Sign out</span>
+        </div>
       </form>
     </div>
   );

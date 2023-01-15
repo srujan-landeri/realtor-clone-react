@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Navigate } from 'react-router-dom';
 
 export default function Navigation() {
   const location = useLocation().pathname.slice(1);
@@ -27,6 +27,7 @@ export default function Navigation() {
             className={
               location === 'offers' ? 'nav-active-link pointer' : ' pointer'
             }
+            // onClick={() => navigate('/offers')}
             onClick={() => navigate('/offers')}
           >
             Offers
@@ -36,7 +37,7 @@ export default function Navigation() {
               location === 'sign-in' ||
               location === 'sign-up' ||
               location === 'forgot-password' ||
-              location === "profile"
+              location === 'profile'
                 ? 'nav-active-link pointer'
                 : ' pointer'
             }
