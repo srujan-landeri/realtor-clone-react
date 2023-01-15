@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, useNavigate, Navigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function Navigation() {
   const location = useLocation().pathname.slice(1);

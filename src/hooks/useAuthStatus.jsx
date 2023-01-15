@@ -12,12 +12,9 @@ export function useAuthStatus() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         //user is signed in
-        console.log(user);
-        console.log('signed in rendered');
         setLoggedIn((prev) => !prev);
       } else {
         // user is signed out / user is not loggin in
-        console.log('user is not signed in');
       }
       setCheckingStatus(false);
     });

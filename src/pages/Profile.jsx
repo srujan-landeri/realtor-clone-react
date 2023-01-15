@@ -1,19 +1,30 @@
 import { getAuth } from 'firebase/auth';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function Profile() {
-  const [formData, setFormData] = React.useState({
-    name: 'xyz',
-    email: 'xyz@gmail.com',
-  });
   const auth = getAuth();
   const navigate = useNavigate();
+  const [formData, setFormData] = React.useState({
+    name: auth.currentUser.displayName,
+    email: auth.currentUser.email,
+  });
+  const [changeDetaials, setChangeDetails] = React.useState(false);
 
   function handleLogout() {
-
     auth.signOut();
     navigate('/');
+    toast.success('sign out was successful');
+  }
+
+  function handleFormDataOnChange(event) {
+    setFormData((prev) => {
+      return {
+        ...prev,
+        [event.target.name]: event.target.value,
+      };
+    });
   }
 
   return (
@@ -22,23 +33,36 @@ export default function Profile() {
 
       <form action="" className="signin m-auto form flex">
         <input
-          disabled
-          className="form-input prof-input"
+          disabled={!changeDetaials}
+          className={
+            changeDetaials
+              ? 'form-input prof-input prof-input-active'
+              : 'form-input prof-input'
+          }
           type="text"
           name="name"
           value={formData.name}
+          onChange={handleFormDataOnChange}
         />
         <input
-          disabled
-          className="form-input prof-input"
+          disabled={!changeDetaials}
+          className={
+            changeDetaials
+              ? 'form-input prof-input prof-input-active'
+              : 'form-input prof-input'
+          }
           type="email"
           name="email"
           value={formData.email}
+          onChange={handleFormDataOnChange}
         />
 
         <div className="prof-text">
           <p>
-            Do you want to edit your details? <span>Edit</span>{' '}
+            Do you want to edit your details?{' '}
+            <span onClick={() => setChangeDetails((prev) => !prev)}>
+              {changeDetaials ? 'Apply Changes' : 'Edit'}
+            </span>{' '}
           </p>
           <span onClick={handleLogout}>Sign out</span>
         </div>

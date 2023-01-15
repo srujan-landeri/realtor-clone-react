@@ -173,3 +173,8 @@
 .prof-text > span {
   color: #1d65f1;
 }
+
+.prof-input-active {
+  background-color: rgb(236, 61, 61);
+  color: white;
+}
