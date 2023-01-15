@@ -1,7 +1,11 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-export default function PrivateRoute() {
-  const [loggedIn, setLoggedIn] = React.useState(true);
+import { useAuthStatus } from '../hooks/useAuthStatus';
 
+export default function PrivateRoute() {
+  const { loggedIn, checkingStatus } = useAuthStatus();
+  if (checkingStatus) {
+    return <h2>Loading</h2>;
+  }
   return loggedIn ? <Outlet /> : <Navigate to="/sign-in" />;
 }
