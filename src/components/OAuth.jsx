@@ -14,8 +14,13 @@ export default function OAuth() {
   async function handleGoogleSignin() {
     try {
       const auth = getAuth();
+      console.log('hi 1');
       const provider = new GoogleAuthProvider();
+      console.log('hi 2');
+
       const result = await signInWithPopup(auth, provider);
+      console.log('hi 3');
+
       const user = result.user;
       console.log(user);
 

@@ -11,7 +11,9 @@ export default function Navigation() {
           className="nav-logo pointer"
           src="https://static.rdc.moveaws.com/images/logos/rdc-logo-default.svg"
           alt="logo"
-          onClick={() => navigate('/')}
+          onClick={() => {
+            navigate('/');
+          }}
         />
       </div>
       <div>
@@ -40,7 +42,7 @@ export default function Navigation() {
                 ? 'nav-active-link pointer'
                 : ' pointer'
             }
-            onClick={() => navigate('/sign-in')}
+            onClick={() => navigate('/profile')}
           >
             Sign in
           </li>
