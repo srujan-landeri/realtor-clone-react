@@ -1,4 +1,4 @@
-import { getAuth } from 'firebase/auth';
+import { getAuth, updateProfile } from 'firebase/auth';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -27,11 +27,26 @@ export default function Profile() {
     });
   }
 
+  async function onSubmit() {
+    try {
+      if (auth.currentUser.displayName != name)
+        [
+          // updating the details
+
+          await updateProfile(auth.currentUser, {
+            displayName: formData.name,  /edit
+          }),
+        ];
+    } catch (error) {
+      toast.error('Could not update the profile details');
+    }
+  }
+
   return (
     <div className="signin-container">
       <h2 className="prof-heading">My Profile</h2>
 
-      <form action="" className="signin m-auto form flex">
+      <form action="" onSubmit="onSubmit" className="signin m-auto form flex">
         <input
           disabled={!changeDetaials}
           className={
