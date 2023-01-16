@@ -38,7 +38,7 @@ export default function App() {
         rtl={false}
         pauseOnFocusLoss
         draggable
-        pauseOnHover
+        pauseOnHover={false}
         theme="dark"
       />
     </div>

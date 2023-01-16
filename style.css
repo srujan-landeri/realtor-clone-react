@@ -178,3 +178,9 @@
   background-color: #ffcfc9;
   color: black;
 }
+.spinner {
+  justify-content: center;
+  height: 70vh;
+  align-items: center;
+  align-content: center;
+}

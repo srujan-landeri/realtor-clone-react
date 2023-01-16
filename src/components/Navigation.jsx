@@ -1,9 +1,22 @@
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function Navigation() {
   const location = useLocation().pathname.slice(1);
   const navigate = useNavigate();
+  const auth = getAuth();
+  const [pathName, setPathName] = React.useState('Sign in');
+
+  React.useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setPathName('Profile');
+      } else {
+        setPathName('Sign in');
+      }
+    });
+  }, [auth]);
   return (
     <nav className="navigation-bar flex">
       <div>
@@ -44,7 +57,7 @@ export default function Navigation() {
             }
             onClick={() => navigate('/profile')}
           >
-            Sign in
+            {pathName}
           </li>
         </ul>
       </div>
