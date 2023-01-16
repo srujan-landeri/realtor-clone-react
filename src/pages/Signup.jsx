@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 
 export default function Signup() {
   const [formData, setFormData] = React.useState({
-    fullname: '',
+    name: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -44,7 +44,7 @@ export default function Signup() {
           formData.password
         );
         updateProfile(auth.currentUser, {
-          displayName: formData.fullname,
+          displayName: formData.name,
         });
         const user = userCreadential.user;
         console.log(user);
@@ -72,7 +72,7 @@ export default function Signup() {
 
   function isValid(event) {
     // checking name
-    if (formData.fullname == '') {
+    if (formData.name == '') {
       toast.error('Please enter your name');
       return -1;
     }
@@ -113,10 +113,10 @@ export default function Signup() {
 
         <form className="form flex" onSubmit={onSubmit}>
           <input
-            name="fullname"
+            name="name"
             type="text"
             placeholder="Full Name"
-            value={formData.fullname}
+            value={formData.name}
             onChange={handleInputOnChange}
             className="form-input"
           />

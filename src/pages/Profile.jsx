@@ -1,7 +1,9 @@
 import { getAuth, updateProfile } from 'firebase/auth';
+import { doc, updateDoc } from 'firebase/firestore';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { db } from '../firebase';
 
 export default function Profile() {
   const auth = getAuth();
@@ -29,16 +31,22 @@ export default function Profile() {
 
   async function onSubmit() {
     try {
-      if (auth.currentUser.displayName != name)
-        [
-          // updating the details
+      if (auth.currentUser.displayName != formData.name) {
+        //updating display name
+        await updateProfile(auth.currentUser, {
+          displayName: formData.name,
+        });
 
-          await updateProfile(auth.currentUser, {
-            displayName: formData.name,  /edit
-          }),
-        ];
+        //update name in the firestore
+
+        const docRef = doc(db, 'users', auth.currentUser.uid);
+        await updateDoc(docRef, {
+          name: formData.name,
+        });
+        toast.success('update was successful');
+      }
     } catch (error) {
-      toast.error('Could not update the profile details');
+      toast.error('There was a problem while updating');
     }
   }
 
@@ -46,9 +54,10 @@ export default function Profile() {
     <div className="signin-container">
       <h2 className="prof-heading">My Profile</h2>
 
-      <form action="" onSubmit="onSubmit" className="signin m-auto form flex">
+      <form action="" onSubmit={onSubmit} className="signin m-auto form flex">
         <input
           disabled={!changeDetaials}
+          autoComplete="off"
           className={
             changeDetaials
               ? 'form-input prof-input prof-input-active'
@@ -60,12 +69,9 @@ export default function Profile() {
           onChange={handleFormDataOnChange}
         />
         <input
-          disabled={!changeDetaials}
-          className={
-            changeDetaials
-              ? 'form-input prof-input prof-input-active'
-              : 'form-input prof-input'
-          }
+          disabled
+          autoComplete="off"
+          className="form-input prof-input"
           type="email"
           name="email"
           value={formData.email}
@@ -75,7 +81,12 @@ export default function Profile() {
         <div className="prof-text">
           <p>
             Do you want to edit your details?{' '}
-            <span onClick={() => setChangeDetails((prev) => !prev)}>
+            <span
+              onClick={() => {
+                changeDetaials && onSubmit();
+                setChangeDetails((prev) => !prev);
+              }}
+            >
               {changeDetaials ? 'Apply Changes' : 'Edit'}
             </span>{' '}
           </p>
